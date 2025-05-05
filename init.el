@@ -206,14 +206,6 @@
 (use-package treemacs-projectile
   :ensure t)
 
-;; vterm
-(use-package vterm
-  :ensure t)
-
-;; Multi-vterm
-(use-package multi-vterm
-  :ensure t)
-
 ;; yaml
 (use-package yaml
   :ensure t)
