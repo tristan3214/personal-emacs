@@ -262,7 +262,7 @@
  '(package-selected-packages
    '(ag company-jedi company-web conda dap-mode djangonaut elpy
 	exec-path-from-shell flycheck helm-ag hl-todo js2-mode
-	json-mode lsp-jedi lsp-ui multi-vterm pyenv-mode shell-pop
+	json-mode lsp-jedi lsp-ui multi- pyenv-mode shell-pop
 	treemacs-all-the-icons treemacs-magit treemacs-projectile
 	web-mode zenburn-theme))
  '(python-indent-guess-indent-offset nil)
