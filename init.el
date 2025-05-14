@@ -206,6 +206,14 @@
 (use-package treemacs-projectile
   :ensure t)
 
+;; vterm
+(use-package vterm
+  :ensure t)
+
+;; Multi-vterm
+(use-package multi-vterm
+  :ensure t)
+
 ;; yaml
 (use-package yaml
   :ensure t)
@@ -251,7 +259,7 @@
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 
 ;; TODO: Configure this to not work in fundamental mode.
-(electric-pair-mode)
+(add-hook 'python-mode-hook (lambda () (electric-pair-mode 1)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -259,13 +267,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files '("~/org/1.org"))
- '(package-selected-packages
-   '(ag company-jedi company-web conda dap-mode djangonaut elpy
-	exec-path-from-shell flycheck helm-ag hl-todo js2-mode
-	json-mode lsp-jedi lsp-ui multi- pyenv-mode shell-pop
-	treemacs-all-the-icons treemacs-magit treemacs-projectile
-	web-mode zenburn-theme))
- '(python-indent-guess-indent-offset nil)
+ '(package-selected-packages nil)
  '(python-shell-interpreter "/Users/thillis/miniconda3/bin/python3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -291,4 +293,15 @@
 
 ;; Set org todo keywords for cycling through.
 (setq org-todo-keywords
-  '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
+;; Set word wrap for org mode
+(add-hook 'org-mode-hook (lambda ()
+			   (turn-on-auto-fill)
+			   (setq fill-column 120)))
+
+
+(use-package org-roam
+  :ensure t)
+(setq org-roam-directory (file-truename "~/org-roam"))
+(org-roam-db-autosync-mode)
