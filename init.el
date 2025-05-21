@@ -98,9 +98,7 @@
   (setq lsp-keymap-prefix "C-c l"
 	lsp-ui-doc-show-with-mouse t
         lsp-ui-doc-position 'at-point
-        lsp-pylsp-plugins-ruff-enabled t
-        lsp-pylsp-plugins-mypy-enabled t
-        lsp-pylsp-plugins-rope-autoimport-enabled t)
+        lsp-pylsp-plugins-ruff-enabled t)
   :hook ((python-mode . lsp)
 	 (js2-mode . lsp)
 	 (js-mode . lsp)
@@ -110,6 +108,13 @@
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq lsp-log-io nil) ; if set to true can cause a performance hit
+
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright")
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  
 
 
   ;; lsp extras
@@ -146,20 +151,6 @@
   (setq conda-anaconda-home (expand-file-name "~/miniconda3"))
   (setq conda-env-home-directory (expand-file-name "~/miniconda3")))
 ;;(conda-env-autoactivate-mode)
-
-;; Install flycheck for various languages
-;; (use-package flycheck-python)
-
-;; Installation of elpy
-;; (use-package elpy
-;;   :ensure t
-;;   :init
-;;   (elpy-enable))
-
-;; ;; Configure elpy more
-;; (when (load "flycheck" t t)
-;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; Projectile
 (use-package projectile
